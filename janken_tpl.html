@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script src="js/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="css/sample.css">
+<title>じゃんけん</title>
+</head>
+<body>
+
+
+<header>
+  <h1>じゃんけん</h1>
+  
+</header>
+
+<main>
+  <ul>
+    <li id="woody_btn"> <img src="img/9001_woody.jpg" alt="ウッディ"class="woody" >   </li>
+    <li id="buzz_btn"><img src="img/9003_buzz-lightyear.jpg" alt="バズ"  class="buzz"></li>
+  </ul>
+  <ul>
+    <li id="woodyorbuzz"> <img src="img/woodyorbuzz.png" alt="ウッディかバズか" class="woodyorbuzz">   </li>
+    <li id="gu_btn"> <img src="img/janken_gu-160x160.png" alt="グー" class="gu">   </li>
+    <li id="cho_btn"><img src="img/janken_choki-160x160.png" alt="チョキ" class="cho"></li>
+    <li id="par_btn"><img src="img/janken_pa-160x160.png" alt="パー" class="pa"></li>
+  </ul>
+  <div computer>VS<br>
+  <ul>
+    <li id="akuyaku"> <img src="img/akuyaku.png" alt="" class="akuyaku"> </li>
+    <li id="pc_hands"><img src="img/comgazou2.png" alt=""> </li>
+  </ul>
+  </div>
+  <div id="judgment">勝ち</div>
+</main>
+
+<footer></footer>
+<script>
+//じゃんけん用のSCRIPTを書いてください
+
+let num = Math.ceil(Math.random() * 3);
+console.log( num );
+
+let num2 = Math.ceil(Math.random() * 2);
+console.log( num2 );
+
+//キャラクターの選択
+$("#woody_btn").on('click',function () {
+if (num2 == 1) { //numが１だったら
+  $("#woodyorbuzz").html('<img src="img/woody111.png"> ')
+} else if ( num2 == 2) { //numが２だったら
+  $("#woodyorbuzz").html('<img src="img/woody222.png"> ');
+} 
+$("#akuyaku").html("<img src='img/shido111.png'>");
+
+});
+
+$("#buzz_btn").on('click',function () {
+if (num2 == 1) { //numが１だったら
+  $("#woodyorbuzz").html('<img src="img/buzz111.png"> ')
+} else if ( num2 == 2) { //numが２だったら
+  $("#woodyorbuzz").html('<img src="img/buzz222.png"> ');
+} 
+$("#akuyaku").html("<img src='img/zark111.png'>");
+
+});
+
+
+
+
+
+//グーを選択した場合
+$('#gu_btn').on('click',function () {
+  $('#cho_btn').html('');
+  $('#par_btn').html('');
+if (num == 1) { //numが１だったら
+  $("#pc_hands").html('<img src="img/janken_gu-160x160.png" alt="グー" class="gu"> ')
+  $("#judgment").html('引き分け');
+} else if ( num == 2) { //numが２だったら
+  $("#pc_hands").html('<img src="img/janken_choki-160x160.png" alt="チョキ" class="cho">');
+  $("#judgment").html('勝ち');
+} else if ( num == 3) { //numが３だったら
+  $("#pc_hands").html('<img src="img/janken_pa-160x160.png" alt="パー" class="pa">');
+  $("#judgment").html('負け');
+}
+});
+
+
+
+
+//チョキを選択した場合
+$('#cho_btn').on('click',function () {
+  $('#gu_btn').html('');
+  $('#par_btn').html('');
+if (num == 1) { //numが１だったら
+  $("#pc_hands").html('<img src="img/janken_gu-160x160.png" alt="グー" class="gu">');
+  $("#judgment").html('負け');
+} else if ( num == 2) { //numが２だったら
+  $("#pc_hands").html('<img src="img/janken_choki-160x160.png" alt="チョキ" class="cho">');
+  $("#judgment").html('引き分け');
+} else if ( num == 3) { //numが３だったら
+  $("#pc_hands").html('<img src="img/janken_pa-160x160.png" alt="パー" class="pa">');
+  $("#judgment").html('勝ち');
+}
+});
+    
+//パーを選択した場合
+$('#par_btn').on('click',function () {
+  $('#gu_btn').html('');
+  $('#cho_btn').html('');
+if (num == 1) { //numが１だったら
+  $("#pc_hands").html('<img src="img/janken_gu-160x160.png" alt="グー" class="gu">');
+  $("#judgment").html('勝ち');
+} else if ( num == 2) { //numが２だったら
+  $("#pc_hands").html('<img src="img/janken_choki-160x160.png" alt="チョキ" class="cho">');
+  $("#judgment").html('負け');
+} else if ( num == 3) { //numが３だったら
+  $("#pc_hands").html('<img src="img/janken_pa-160x160.png" alt="パー" class="pa">');
+  $("#judgment").html('引き分け');
+}
+});
+
+//クリックしたら再戦
+function koushin(){location.reload();}
+</script>
+
+<input type="again_btn" value="もう一回！" onclick="koushin()">
+
+</body>
+</html>
