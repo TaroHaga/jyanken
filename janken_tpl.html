@@ -32,15 +32,23 @@
     <li id="pc_hands"><img src="img/comgazou2.png" alt=""> </li>
   </ul>
   </div>
-  <div id="judgment">勝ち</div>
+  <div id="judgment">勝ち or 負け or 引き分け</div>
+
+  <ul>
+      <li id="save">Save<br><img src="img/save1.png"></li>
+      <li id="clear">Clear<br><img src="img/clear.png"></li>
+  </ul>
+
+  <table id="list">
+    <!-- ここに追加データが挿入される -->
+  </table>
+ 
+
 </main>
 
-<footer></footer>
+
 <script>
 //じゃんけん用のSCRIPTを書いてください
-
-let num = Math.ceil(Math.random() * 3);
-console.log( num );
 
 let num2 = Math.ceil(Math.random() * 2);
 console.log( num2 );
@@ -68,8 +76,8 @@ $("#akuyaku").html("<img src='img/zark111.png'>");
 
 //グーを選択した場合
 $('#gu_btn').on('click',function () {
-  $('#cho_btn').html('');
-  $('#par_btn').html('');
+  let num = Math.ceil(Math.random() * 3);
+console.log( num );
 if (num == 1) { //numが１だったら
   $("#pc_hands").html('<img src="img/janken_gu-160x160.png" alt="グー" class="gu"> ')
   $("#judgment").html('引き分け');
@@ -84,8 +92,8 @@ if (num == 1) { //numが１だったら
 
 //チョキを選択した場合
 $('#cho_btn').on('click',function () {
-  $('#gu_btn').html('');
-  $('#par_btn').html('');
+  let num = Math.ceil(Math.random() * 3);
+console.log( num );
 if (num == 1) { //numが１だったら
   $("#pc_hands").html('<img src="img/janken_gu-160x160.png" alt="グー" class="gu">');
   $("#judgment").html('負け');
@@ -100,8 +108,8 @@ if (num == 1) { //numが１だったら
     
 //パーを選択した場合
 $('#par_btn').on('click',function () {
-  $('#gu_btn').html('');
-  $('#cho_btn').html('');
+  let num = Math.ceil(Math.random() * 3);
+console.log( num );
 if (num == 1) { //numが１だったら
   $("#pc_hands").html('<img src="img/janken_gu-160x160.png" alt="グー" class="gu">');
   $("#judgment").html('勝ち');
@@ -116,9 +124,35 @@ if (num == 1) { //numが１だったら
 
 //クリックしたら再戦
 function koushin(){location.reload();}
+
+
+$("#save").on("click",function(){
+    const key = $("#woodyorbuzz").html();
+    const memo = $("#judgment").html();
+    localStorage.setItem(key,memo);
+    //HTML出力
+    const html=`${key}${memo} `;
+
+    
+    $("#list").append(html);
+});
+
+$("#clear").on("click",function(){
+    localStorage.clear();
+    $("#list").empty();
+
+
+});
+
+for(let i=0; i<localStorage.length; i++){
+    const key   = localStorage.key(i);
+    const memo = localStorage.getItem(key);
+    const html = '<tr><th>'+key+'</th><td>'+memo+'</td></tr>';
+    $("#list").append(html);
+}
+
 </script>
 
-<input type="again_btn" value="もう一回！" onclick="koushin()">
-
+<footer></footer>
 </body>
 </html>
