@@ -12,8 +12,9 @@ header{
 }
 main{
     border-bottom:1px solid #ccc;
+    border-color: #fff;
     text-align: center;
-    
+    border: 0px;
 }
 
 footer{
@@ -29,7 +30,7 @@ p{
 }
 ul{
     padding: 0;
-    border-top: 1px solid #000000;
+    border-top: 1px solid white;
     display:table;  /* 定義 */
     table-layout: fixed;
     width:100%;
@@ -37,7 +38,7 @@ ul{
 li{
     text-align: center;
     list-style-type:none;
-    border: 1px solid #666;
+    border: 1px solid white;
     background-color:white;
     display:table-cell;  /* 定義 */
     cursor: pointer;
@@ -60,3 +61,4 @@ li:hover{
 .woodyorbuzz{padding-top:20px;}
 .akuyaku{padding-bottom:20px;}
 
+.table{margin: auto;}
